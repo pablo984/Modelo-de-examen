@@ -1,0 +1,42 @@
+import Aves.*
+import Islas.*
+
+test "Test de isla y aves" {
+	/*Creacion de algunas instancias de Ave*/
+	const colorado = new AguiluchoColorado()
+	const albatros = new Albatros()
+	const torcaza = new PalomaTorcaza()
+	
+	/*El albatros va al gimnasio*/
+	albatros.irAlGimnasio()
+	
+	/*Creacion de una instancia de Isla*/
+	const isla = new Isla() 
+	isla.agregarAves([colorado, albatros, torcaza])
+	
+	/*Test a la isla*/
+	assert.equals(580, colorado.fuerza())
+	assert.equals(1100, albatros.fuerza())
+	assert.equals(700, torcaza.fuerza())
+	assert.equals(4500, albatros.peso())
+	assert.equals(2380, isla.fuerzaTotal())
+	assert.equals([colorado, torcaza], isla.avesDebiles())
+	
+	/*Indicación y tests de que hubo terremoto en la isla*/
+	isla.huboTerremoto()
+	assert.equals(40, colorado.velocidad())
+	assert.equals(5300, albatros.peso())
+	assert.equals(500, torcaza.ira())
+	assert.equals(580, colorado.fuerza())
+	assert.equals(1100, albatros.fuerza())
+	assert.equals(1400, torcaza.fuerza())
+	assert.equals([colorado], isla.avesDebiles())
+	
+	/*Indicación y tests de que hubo tormenta en la isla*/
+	isla.huboTormenta()
+	assert.equals(80, colorado.velocidad())
+	assert.equals(640, colorado.fuerza())
+	assert.equals(5300, albatros.peso())
+	assert.equals(500, torcaza.ira())
+	
+}
